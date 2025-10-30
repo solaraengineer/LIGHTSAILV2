@@ -1,5 +1,4 @@
 from requests import Request
-
 from logic.models import *
 from django.views.decorators.http import require_GET
 from django.http import JsonResponse, Http404
@@ -12,7 +11,6 @@ from django.conf import settings
 from django_ratelimit.decorators import ratelimit
 import requests
 from logic.forms import RegistrationForm, LoginForm, UpdateForm
-
 
 @ratelimit(key='ip', rate='5/m', block=True)
 def login(request):
