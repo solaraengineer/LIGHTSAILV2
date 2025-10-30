@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'dash.css' %}">
+</head>
+<body>
+<div class="grid-overlay"></div>
+<div class="scanline"></div>
+
+<div class="topnav">
+    <a href="/dash">Home</a>
+    <a href="/map">Map</a>
+    <a href="/Settings">Settings</a>
+    <a href="/Policy">Terms</a>
+</div>
+
+<div class="Data">
+    <p id="username">{{ username }}</p>
+    <p id="email">{{ email }}</p>
+
+
+<div class="update">
+    <h3>update ur data</h3>
+    <form id="Update" method="POST" action="/Update">
+        {% csrf_token %}
+        {{ update_form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+       {% if messages %}
+    {% for message in messages %}
+        {% if 'Update' in message.extra_tags %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</div>
+</div>
+</body>
+</html>
